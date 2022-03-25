@@ -246,7 +246,7 @@ class HomePage extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                          Text("Hospital"),
+                          Text("Corona Hospital"),
                         ],
                       ),
                     ),
