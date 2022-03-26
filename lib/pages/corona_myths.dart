@@ -44,19 +44,32 @@ class _CoronaMythsState extends State<CoronaMyths> {
               itemCount: coronamyths['data'].length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Card(
-                    child: Column(
-                      children: [
-                        Text(
-                          coronamyths['data'][index]['myth_np'],
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          coronamyths['data'][index]['reality_np'],
-                        ),
-                      ],
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        child: Text("${index + 1}"),
+                      ),
+                      title: Text(
+                        coronamyths['data'][index]['myth_np'],
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        coronamyths['data'][index]['reality_np'],
+                      ),
                     ),
+
+                    // child: Column(
+                    //   children: [
+                    //     Text(
+                    //       coronamyths['data'][index]['myth_np'],
+                    //       style: const TextStyle(fontWeight: FontWeight.bold),
+                    //     ),
+                    //     Text(
+                    //       coronamyths['data'][index]['reality_np'],
+                    //     ),
+                    //   ],
+                    // ),
                   ),
                 );
               },

@@ -53,24 +53,28 @@ class _CoronaNewsState extends State<CoronaNews> {
                           forceWebView: true, enableJavaScript: true);
                     },
                     child: Card(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 150,
-                            width: double.infinity,
-                            child: Image.network(
-                              "https://assets-api.kathmandupost.com/thumb.php?src=https://assets-cdn.kathmandupost.com/uploads/source/news/2021/entertainment/thumb1-1610966848.jpg&w=900&height=601",
-                              fit: BoxFit.cover,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 150,
+                              width: double.infinity,
+                              child: Image.network(
+                                "https://assets-api.kathmandupost.com/thumb.php?src=https://assets-cdn.kathmandupost.com/uploads/source/news/2021/entertainment/thumb1-1610966848.jpg&w=900&height=601",
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          Text(
-                            coronanews['data'][index]['title'],
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            coronanews['data'][index]['summary'],
-                          ),
-                        ],
+                            Text(
+                              coronanews['data'][index]['title'],
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              coronanews['data'][index]['summary'],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
