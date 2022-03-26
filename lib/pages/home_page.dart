@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:corona_app/pages/corona_news.dart';
 import 'package:corona_app/pages/world_data.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -211,23 +212,31 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        Card(
-                          child: Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            color: Colors.amber,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.pages,
-                                  size: 70,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text("Corona News"),
-                              ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const CoronaNews()));
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 80,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              color: Colors.amber,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.pages,
+                                    size: 70,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("Corona News"),
+                                ],
+                              ),
                             ),
                           ),
                         ),
