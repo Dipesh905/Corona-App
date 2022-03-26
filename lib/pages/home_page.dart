@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:corona_app/pages/corona_faq.dart';
 import 'package:corona_app/pages/corona_myths.dart';
 import 'package:corona_app/pages/corona_news.dart';
@@ -37,154 +36,247 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.menu),
         title: const Text("Corona App"),
         centerTitle: true,
+        elevation: 2,
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.notifications_active))
+        ],
       ),
       body: nepaldata == null
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+              child: SafeArea(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Nepal Information",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Stack(
                       children: [
-                        Container(
-                          height: 80,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          color: Colors.blue[300],
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.35,
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
-                                "Total Tested",
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                width: double.infinity,
+                                color: Colors.blue,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Updated on: ${nepaldata['latest_sit_report']['date']}",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      const Text(
+                                        "Nepal's Corona Virus Cases",
+                                        style: TextStyle(
+                                            fontSize: 20, color: Colors.white),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "${nepaldata['tested_total']}",
+                                        style: const TextStyle(
+                                            fontSize: 28, color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text("${nepaldata['tested_total']}"),
+                              Container(
+                                  // color: Colors.red,
+                                  )
                             ],
                           ),
                         ),
-                        Container(
-                          height: 80,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          color: Colors.green[300],
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Tested Negative",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text("${nepaldata['tested_negative']}"),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 80,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          color: Colors.red[300],
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Tested Positive",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text("${nepaldata['tested_positive']}"),
-                            ],
-                          ),
-                        ),
+                        Positioned(
+                            left: 20,
+                            top: MediaQuery.of(context).size.height * 0.14,
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Card(
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.10,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          // color: Colors.red,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                              "Deaths",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 14),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              "${nepaldata['deaths']}",
+                                              style: const TextStyle(
+                                                  fontSize: 30,
+                                                  color: Colors.red),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Card(
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.10,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          // color: Colors.red,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                              "Recovered",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 14),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              "${nepaldata['recovered']}",
+                                              style: const TextStyle(
+                                                  fontSize: 30,
+                                                  color: Colors.green),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Card(
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.10,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          // color: Colors.red,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                              "Tested Positive",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 14),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              "${nepaldata['tested_positive']}",
+                                              style: const TextStyle(
+                                                  fontSize: 30,
+                                                  color: Colors.red),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Card(
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.10,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          // color: Colors.red,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                              "Tested Negative",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 14),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              "${nepaldata['tested_negative']}",
+                                              style: const TextStyle(
+                                                  fontSize: 30,
+                                                  color: Colors.green),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ))
                       ],
                     ),
                     const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          height: 80,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          color: Colors.blue[300],
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Updated on:",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text("${nepaldata['latest_sit_report']['date']}"),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 80,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          color: Colors.green[300],
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Recovered",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text("${nepaldata['recovered']}"),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 80,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          color: Colors.red[300],
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Deaths",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text("${nepaldata['deaths']}"),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
                     GridView.count(
                       shrinkWrap: true,
-                      crossAxisCount: 3,
+                      crossAxisCount: 2,
                       children: [
                         InkWell(
                           onTap: () {
@@ -298,26 +390,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        Card(
-                          child: Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            color: Colors.amber,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.local_hospital,
-                                  size: 70,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text("Corona Hospital"),
-                              ],
-                            ),
-                          ),
-                        )
                       ],
                     )
                   ],

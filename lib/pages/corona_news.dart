@@ -22,8 +22,6 @@ class _CoronaNewsState extends State<CoronaNews> {
     setState(() {
       coronanews = data;
     });
-
-    print(data['data'][0]['url']);
   }
 
   @override
