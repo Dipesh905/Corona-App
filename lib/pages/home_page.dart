@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:corona_app/pages/world_data.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -182,23 +183,31 @@ class _HomePageState extends State<HomePage> {
                       shrinkWrap: true,
                       crossAxisCount: 3,
                       children: [
-                        Card(
-                          child: Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            color: Colors.amber,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.map_rounded,
-                                  size: 70,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text("View World Data"),
-                              ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const WorldData()));
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 80,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              color: Colors.amber,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.map_rounded,
+                                    size: 70,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("View World Data"),
+                                ],
+                              ),
                             ),
                           ),
                         ),
