@@ -1,46 +1,45 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class CoronaMyths extends StatefulWidget {
-  const CoronaMyths({Key? key}) : super(key: key);
+class CoronaFaq extends StatefulWidget {
+  const CoronaFaq({Key? key}) : super(key: key);
 
   @override
-  State<CoronaMyths> createState() => _CoronaMythsState();
+  State<CoronaFaq> createState() => _CoronaFaqState();
 }
 
-class _CoronaMythsState extends State<CoronaMyths> {
-  var coronamyths;
-  getcoronamyths() async {
-    var url = Uri.parse('https://corona.askbhunte.com/api/v1/myths');
+class _CoronaFaqState extends State<CoronaFaq> {
+  var coronafaq;
+  getcoronafaq() async {
+    var url = Uri.parse('https://corona.askbhunte.com/api/v1/faqs');
     var response = await http.get(url);
 
     var data = jsonDecode(response.body);
 
     setState(() {
-      coronamyths = data;
+      coronafaq = data;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    getcoronamyths();
+    getcoronafaq();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Corona Myths"),
+        title: const Text("Frequently Asked Questions"),
       ),
-      body: coronamyths == null
+      body: coronafaq == null
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              itemCount: coronamyths['data'].length,
+              itemCount: coronafaq['data'].length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -50,25 +49,13 @@ class _CoronaMythsState extends State<CoronaMyths> {
                         child: Text("${index + 1}"),
                       ),
                       title: Text(
-                        coronamyths['data'][index]['myth_np'],
+                        coronafaq['data'][index]['question_np'],
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        coronamyths['data'][index]['reality_np'],
+                        coronafaq['data'][index]['answer_np'],
                       ),
                     ),
-
-                    // child: Column(
-                    //   children: [
-                    //     Text(
-                    //       coronamyths['data'][index]['myth_np'],
-                    //       style: const TextStyle(fontWeight: FontWeight.bold),
-                    //     ),
-                    //     Text(
-                    //       coronamyths['data'][index]['reality_np'],
-                    //     ),
-                    //   ],
-                    // ),
                   ),
                 );
               },

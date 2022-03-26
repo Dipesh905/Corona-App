@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:corona_app/pages/corona_faq.dart';
 import 'package:corona_app/pages/corona_myths.dart';
 import 'package:corona_app/pages/corona_news.dart';
 import 'package:corona_app/pages/world_data.dart';
@@ -269,23 +270,31 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        Card(
-                          child: Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            color: Colors.amber,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.question_answer,
-                                  size: 70,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text("FAQ of Corona"),
-                              ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const CoronaFaq()));
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 80,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              color: Colors.amber,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.question_answer,
+                                    size: 70,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("FAQ of Corona"),
+                                ],
+                              ),
                             ),
                           ),
                         ),
