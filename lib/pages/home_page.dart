@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:corona_app/pages/corona_myths.dart';
 import 'package:corona_app/pages/corona_news.dart';
 import 'package:corona_app/pages/world_data.dart';
 import 'package:flutter/material.dart';
@@ -240,23 +241,31 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        Card(
-                          child: Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            color: Colors.amber,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.map_rounded,
-                                  size: 70,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text("Myths of Corona"),
-                              ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const CoronaMyths()));
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 80,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              color: Colors.amber,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.map_rounded,
+                                    size: 70,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("Myths of Corona"),
+                                ],
+                              ),
                             ),
                           ),
                         ),
